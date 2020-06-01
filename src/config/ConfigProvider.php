@@ -9,12 +9,13 @@ class ConfigProvider extends Provider
 
     public function register(App $app)
     {
-        echo 'config register';
+        $app->bind('config',function() use ($app){
+            return new Config($app);
+        });
     }
 
     public function boot(App $app)
     {
-        echo 'config boot';
     }
 
 }

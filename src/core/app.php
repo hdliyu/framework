@@ -18,6 +18,10 @@ class App extends Container
         $app->boot();
     }
 
+    public static function app(){
+        return self::$app;
+    }
+
     protected function init()
     {
         $this->defineConst();
@@ -32,7 +36,7 @@ class App extends Container
     protected function bindProviders()
     {
        $appConfig = require CONFIG_PATH.'/app.php';
-       foreach($appConfig['providers'] as $provider){
+       foreach($appConfig['providers'] as $provider){   
            $reflection = new ReflectionClass($provider);
            $properties = $reflection->getDefaultProperties();
            if($properties['defer']){
@@ -51,7 +55,7 @@ class App extends Container
     {
        if($this->getProvider($provider)) return;
        if(is_string($provider)){
-           $provider = new $provider;
+           $provider = new $provider($this);
        }
        $provider->register($this);
        $this->serviceProviders[] = $provider;
@@ -77,6 +81,13 @@ class App extends Container
                 $provider->boot($this);
             }
         }
+    }
+
+    public function make($name,$force=false){
+        if(isset($this->deferProviders[$name])){
+            $this->register($this->deferProviders[$name]);
+        }
+        return parent::make($name,$force);
     }
 
 }

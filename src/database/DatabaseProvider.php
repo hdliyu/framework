@@ -8,12 +8,15 @@ class DatabaseProvider extends Provider
 
     public function register(App $app)
     {
-        echo 'database register';
+        // 绑定单例服务
+        // $app->instance('Database',new Database());
+        $app->bind('Database',function() use ($app){
+            return new Database($app);
+        },true);
     }
 
     public function boot()
     {
-        echo 'database boot';
     }
 
 }
