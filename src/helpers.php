@@ -31,7 +31,6 @@ function dd(...$vars){
     $info = ob_get_clean();
     $html.=$info;
     $html.='</pre>';
-    
     die($html);
 }
 

@@ -3,11 +3,13 @@ namespace hdliyu\framework\config;
 
 class Config{
 
-    public function get($name){
+    public function get($name)
+    {
 
     }
 
-    public function set($name,$value){
+    public function set($name,$value)
+    {
         
     }
     

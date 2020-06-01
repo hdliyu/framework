@@ -1,7 +1,8 @@
 <?php
 namespace hdliyu\framework\database;
 
-class DatabaseFacade{
+class DatabaseFacade
+{
 
     public function getName()
     {

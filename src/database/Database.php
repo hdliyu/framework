@@ -1,21 +1,26 @@
 <?php
 namespace hdliyu\framework\database;
 
-class Database{
+class Database
+{
 
-    public function query(){
+    public function query()
+    {
         echo 'database query';
     }
 
-    public function insert(){
+    public function insert()
+    {
         echo 'database insert';
     }
 
-    public function update(){
+    public function update()
+    {
         echo 'database update';
     }
 
-    public function delete(){
+    public function delete()
+    {
         echo 'database delete';
     }
 }
