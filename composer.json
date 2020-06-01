@@ -1,0 +1,14 @@
+{
+    "name": "hdliyu/framework",
+    "description": "a tiny fast php framework",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "hdliyu",
+            "email": "278746453@qq.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
