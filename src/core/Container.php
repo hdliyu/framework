@@ -32,6 +32,9 @@ abstract class Container
     protected function getClosure($name){
         return isset($this->building[$name])?$this->building[$name]['closure']:$name;
     }
+    /**
+     * 构建服务对象
+     */
     protected function build($closure){
         //如果是实现是回调函数返回调用结果
         if($closure instanceof Closure){
@@ -39,9 +42,11 @@ abstract class Container
         }
         $reflection = new ReflectionClass($closure);
         $constructor = $reflection->getConstructor();
+        //没有构造函数的类直接实例化返回
         if(is_null($constructor)){
             return new $closure;
         }
+        //有构造函数参数的依赖注入处理
         $parameters = $constructor->getParameters();
         $parameters = $this->parseParams($parameters);
         return $reflection->newInstanceArgs($parameters);

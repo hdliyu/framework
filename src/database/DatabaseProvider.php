@@ -18,7 +18,6 @@ class DatabaseProvider extends Provider
 
     public function boot()
     {
-        
     }
 
 }

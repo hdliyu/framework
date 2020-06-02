@@ -8,7 +8,7 @@ class Database
     // IOC 使用反射实现依赖注入
     public function __construct($a=1,Config $config)
     {
-        dd($a,$config);
+        
     }
     public function query()
     {

@@ -9,13 +9,12 @@ class ConfigProvider extends Provider
 
     public function register(App $app)
     {
-        $app->bind('config',function() use ($app){
-            return new Config($app);
-        });
+        $app->bind('Config',Config::class,true);
     }
 
-    public function boot(App $app)
+    public function boot()
     {
+        $this->app->make('Config')->load();
     }
 
 }

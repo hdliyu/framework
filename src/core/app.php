@@ -8,6 +8,8 @@ class App extends Container
     protected $serviceProviders = [];
     //延迟注册的服务
     protected $deferProviders = [];
+    //立即注册服务是否已全部启动
+    protected $booted = false;
     protected static $app;
 
     public static function bootstrap()
@@ -58,7 +60,9 @@ class App extends Container
            $provider = new $provider($this);
        }
        $provider->register($this);
+       //下面两行不可调换位置，否则会造成死循环
        $this->serviceProviders[] = $provider;
+       $this->booted && $provider->boot(); 
     }
 
     /**
@@ -81,6 +85,7 @@ class App extends Container
                 $provider->boot($this);
             }
         }
+        $this->booted = true;
     }
 
     public function make($name,$force=false){
