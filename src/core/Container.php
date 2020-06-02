@@ -1,6 +1,10 @@
 <?php
 namespace hdliyu\framework\core;
 
+use Closure;
+use Exception;
+use ReflectionClass;
+
 abstract class Container
 {
     // 普通服务对象容器
@@ -25,13 +29,48 @@ abstract class Container
         }
         return $instance;
     }
-
-    protected function build($closure){
-        return $closure();
-    }
-
     protected function getClosure($name){
         return isset($this->building[$name])?$this->building[$name]['closure']:$name;
     }
+    protected function build($closure){
+        //如果是实现是回调函数返回调用结果
+        if($closure instanceof Closure){
+            return $closure($this);
+        }
+        $reflection = new ReflectionClass($closure);
+        $constructor = $reflection->getConstructor();
+        if(is_null($constructor)){
+            return new $closure;
+        }
+        $parameters = $constructor->getParameters();
+        $parameters = $this->parseParams($parameters);
+        return $reflection->newInstanceArgs($parameters);
+    }
 
+    /**
+     * 分析服务对象构造函数参数
+     */
+    protected function parseParams($parameters)
+    {
+        $parameter = [];
+        foreach($parameters as $param){
+            $class = $param->getClass();
+            if(is_null($class)){
+                //基本类型
+                $parameter[] = $this->parseNonParam($param);
+            }else{
+                //类
+                $parameter[] = $this->build($class->name);
+            }
+        }
+        return $parameter;
+    }
+    
+    protected function parseNonParam($param)
+    {
+        if($param->isDefaultValueAvailable()){
+           return $param->getDefaultValue();
+        }
+        throw new Exception('默认值缺少参数');
+    }
 }

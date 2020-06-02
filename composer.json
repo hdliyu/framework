@@ -13,7 +13,8 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "hdliyu\\framework\\":"src/"
+            "hdliyu\\framework\\":"src/",
+            "app\\":"app/"
         },
         "files": [
             "src/helpers.php"
