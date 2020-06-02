@@ -1,10 +1,12 @@
 <?php
 namespace hdliyu\framework\database;
 
-class DatabaseFacade
+use hdliyu\framework\core\Facade;
+
+class DatabaseFacade extends Facade
 {
 
-    public function getName()
+    public static function getAccessor()
     {
         return 'Database';
     }

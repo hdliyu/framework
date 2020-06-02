@@ -13,7 +13,7 @@ return [
         DatabaseProvider::class,
     ],
     'facades'=>[
-        ConfigFacade::class,
-        DatabaseFacade::class,
+        'Config'=>ConfigFacade::class,
+        'Database'=>DatabaseFacade::class,
     ]
 ];

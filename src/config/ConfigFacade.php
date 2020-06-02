@@ -1,8 +1,11 @@
 <?php
 namespace hdliyu\framework\config;
 
-class ConfigFacade{
-    public function getName()
+use hdliyu\framework\core\Facade;
+
+class ConfigFacade extends Facade{
+
+    public static function getAccessor()
     {
         return 'Config';
     }

@@ -21,8 +21,9 @@ class Config{
     }
 
 
-    public function get($name,$default=null){
+    public function get($name=null,$default=null){
         $tmp = &$this->config;
+        if(is_null($name)) return $tmp;
         foreach(explode('.',$name) as $key){
             if(!isset($tmp[$key])) return $default;
             $tmp = &$tmp[$key];

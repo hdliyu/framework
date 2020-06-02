@@ -6,7 +6,8 @@ function app($name=null,$force=false){
     return is_null($name)?$app:$app->make($name,$force);
 }
 
-function config($name,$value='[@GET]'){
+function config($name=null,$value='[@GET]'){
+    if(is_null($name)) return app('Config')->get();
     if($value=='[@GET]'){
         return app('Config')->get($name);
     }

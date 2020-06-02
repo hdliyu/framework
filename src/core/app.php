@@ -27,6 +27,15 @@ class App extends Container
     protected function init()
     {
         $this->defineConst();
+        spl_autoload_register([$this,'autoloadFacade']);
+    }
+    
+    protected function autoloadFacade($name)
+    {
+        $facades = config('app.facades');
+        if(isset($facades[$name])){
+            class_alias($facades[$name],$name);
+        }
     }
 
     protected function defineConst()
