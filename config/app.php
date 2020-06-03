@@ -3,6 +3,8 @@ use hdliyu\framework\config\ConfigFacade;
 use hdliyu\framework\config\ConfigProvider;
 use hdliyu\framework\database\DatabaseFacade;
 use hdliyu\framework\database\DatabaseProvider;
+use hdliyu\framework\route\RouteFacade;
+use hdliyu\framework\route\RouteProvider;
 
 return [
     'name'=>'狂空怒',
@@ -11,9 +13,11 @@ return [
     'providers'=>[
         ConfigProvider::class,
         DatabaseProvider::class,
+        RouteProvider::class,
     ],
     'facades'=>[
         'Config'=>ConfigFacade::class,
         'Database'=>DatabaseFacade::class,
+        'Route'=>RouteFacade::class,
     ]
 ];

@@ -1,6 +1,5 @@
 <?php
 namespace app\controllers;
-
 use hdliyu\framework\core\Controller;
 
 class Index extends Controller{

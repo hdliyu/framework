@@ -1,6 +1,5 @@
 <?php
 namespace app\controllers;
-
 use hdliyu\framework\core\Controller;
 
 class User extends Controller{
