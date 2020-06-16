@@ -14,7 +14,7 @@ class RouteProvider extends Provider
 
     public function boot()
     {
-        $this->app->make('Route')->load();
+       
     }
 
 }

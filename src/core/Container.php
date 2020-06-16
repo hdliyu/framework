@@ -18,13 +18,14 @@ abstract class Container
         $this->instances[$name] = $instance;
     }
     protected function make($name,$force){
+        dump($name);
         if(isset($this->instances[$name])){
             return $this->instances[$name];
         }
         $closure = $this->getClosure($name);
         $instance = $this->build($closure);
         //服务是否绑定单例
-        if($this->building[$name]['force'] || $force){
+        if(isset($this->building[$name]) && $this->building[$name]['force'] || $force){
             $this->instances[$name] = $instance;
         }
         return $instance;

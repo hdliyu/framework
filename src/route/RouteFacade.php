@@ -7,6 +7,6 @@ class RouteFacade extends Facade{
 
     public static function getAccessor()
     {
-        return 'Config';
+        return 'Route';
     }
 }

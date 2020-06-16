@@ -17,7 +17,9 @@ class App extends Container
         self::$app = $app = new self();
         $app->init();
         $app->bindProviders();
+        spl_autoload_register([$app,'autoloadFacade']);
         $app->boot();
+        app('Route')->bootstrap();
     }
 
     public static function app(){
@@ -26,8 +28,8 @@ class App extends Container
 
     protected function init()
     {
-        $this->defineConst();
-        spl_autoload_register([$this,'autoloadFacade']);
+        define('ROOT_PATH',str_replace('\\','/',realpath(__DIR__.'/../../')));
+        define('CONFIG_PATH',ROOT_PATH.'/config');
     }
     
     protected function autoloadFacade($name)
@@ -36,12 +38,6 @@ class App extends Container
         if(isset($facades[$name])){
             class_alias($facades[$name],$name);
         }
-    }
-
-    protected function defineConst()
-    {
-        define('ROOT_PATH',str_replace('\\','/',realpath(__DIR__.'/../../')));
-        define('CONFIG_PATH',ROOT_PATH.'/config');
     }
 
     protected function bindProviders()

@@ -1,5 +1,8 @@
 <?php
-Route::get('/','HomeController@index');
-Route::get('artilce/{id}',function($id,Config $config){
-    var_dump($id,$config);
+use hdliyu\framework\config\Config;
+
+Route::get('/','Index@index');
+Route::get('user/{id}','User@show');
+Route::get('article/{id}',function($id,Config $config){
+    return 'cba id:'.$config->get('app.name');
 })->where(['id'=>'\d+']);

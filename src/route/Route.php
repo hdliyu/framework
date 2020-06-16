@@ -2,9 +2,14 @@
 namespace hdliyu\framework\route;
 
 class Route{
-   
-    public function load()
+    use Setting,Compile,Execute;
+
+    public function bootstrap()
     {
-     
+        $this->load();
+        $this->format();
+        $content = $this->exec();
+        echo $content;
     }
+
 }
