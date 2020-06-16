@@ -18,7 +18,6 @@ abstract class Container
         $this->instances[$name] = $instance;
     }
     protected function make($name,$force){
-        dump($name);
         if(isset($this->instances[$name])){
             return $this->instances[$name];
         }
