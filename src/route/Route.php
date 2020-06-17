@@ -9,7 +9,7 @@ class Route{
         $this->load();
         $this->format();
         $content = $this->exec();
-        echo $content;
+        echo $content; //输出响应
     }
 
 }

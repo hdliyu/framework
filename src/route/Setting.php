@@ -16,7 +16,8 @@ trait Setting{
            'method'=>$name,
            'path'=>$arguments[0],
            'action'=>$arguments[1],
-           'where'=>[]
+           'where'=>[],
+           'middleware'=>[],
        ];
        return $this;
     }
@@ -26,7 +27,11 @@ trait Setting{
         $this->setProperty('where',$params);
         return $this;
     }
-    
+    public function middleware(array $middleware)
+    {
+        $this->setProperty('middleware',$middleware);
+        return $this;
+    }
     protected function setProperty($name,$params)
     {
         $index = count($this->routes)-1;

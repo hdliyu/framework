@@ -2,7 +2,7 @@
 namespace hdliyu\framework\route;
 
 use Closure;
-use ReflectionClass;
+use Middleware;
 use ReflectionFunction;
 use ReflectionMethod;
 
@@ -13,12 +13,19 @@ trait Execute{
         $this->parseRoute();
         if(!$this->route) die('404');
         $action = $this->route['action'];
+        $this->execMiddleware();//执行路由中间件
         if($action instanceof Closure){
            return $this->callClosure($action);
         }else{
            return $this->callController($action);
         }
     }
+
+    protected function execMiddleware()
+    {
+        Middleware::route($this->route['middleware']);
+    }
+
     public function callController($action)
     {
         list($controller,$method) = explode('@',$action);

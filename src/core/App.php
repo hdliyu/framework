@@ -19,7 +19,6 @@ class App extends Container
         $app->bindProviders();
         spl_autoload_register([$app,'autoloadFacade']);
         $app->boot();
-        app('Route')->bootstrap();
     }
 
     public static function app(){
