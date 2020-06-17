@@ -1,19 +1,15 @@
 <?php
 namespace hdliyu\framework\database;
-use hdliyu\framework\core\Provider;
 use hdliyu\framework\core\App;
+use hdliyu\framework\core\Provider;
 
 class DatabaseProvider extends Provider
 {
+    protected $defer = false;
 
     public function register(App $app)
     {
         $app->bind('Database',Database::class,true);
-        // 绑定单例服务
-        // $app->instance('Database',new Database());
-        // $app->bind('Database',function() use ($app){
-        //     return new Database($app);
-        // },true);
     }
 
     public function boot()

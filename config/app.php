@@ -14,14 +14,14 @@ return [
     'url'=>'https://www.houdunren.com',
     'providers'=>[
         ConfigProvider::class,
-        DatabaseProvider::class,
         RouteProvider::class,
         MiddlewareProvider::class,
+        DatabaseProvider::class,
     ],
     'facades'=>[
         'Config'=>ConfigFacade::class,
-        'Database'=>DatabaseFacade::class,
         'Route'=>RouteFacade::class,
         'Middleware'=>MiddlewareFacade::class,
+        'Db'=>DatabaseFacade::class,
     ]
 ];

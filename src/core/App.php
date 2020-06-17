@@ -33,6 +33,7 @@ class App extends Container
     
     protected function autoloadFacade($name)
     {
+        //门面类实现
         $facades = config('app.facades');
         if(isset($facades[$name])){
             class_alias($facades[$name],$name);
